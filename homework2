@@ -1,0 +1,367 @@
+
+##1
+
+ 
+
+import random
+
+ 
+
+def rottonumber():
+
+    number=random.randint(1,45)
+
+    return number
+
+ 
+
+rn1=rottonumber()
+
+rn2=rottonumber()
+
+rn3=rottonumber()
+
+rn4=rottonumber()
+
+rn5=rottonumber()
+
+rn6=rottonumber()
+
+ 
+
+class Node():
+
+    def __init__(self):
+
+        self.data=None
+
+        self.link=None
+
+        
+
+node1=Node()
+
+node1.data=rn1
+
+ 
+
+node2=Node()
+
+node2.data=rn2
+
+node1.link=node2
+
+ 
+
+node3=Node()
+
+node3.data=rn3
+
+node2.link=node3
+
+ 
+
+node4=Node()
+
+node4.data=rn4
+
+node3.link=node4
+
+ 
+
+node5=Node()
+
+node5.data=rn5
+
+node4.link=node5
+
+ 
+
+node6=Node()
+
+node6.data=rn6
+
+node5.link=node6
+
+ 
+
+ 
+
+current=node1
+
+print(current.data,end=' ')
+
+while current.link !=None:
+
+    current=current.link
+
+    print(current.data,end=' ')
+
+
+##2
+
+ 
+
+import random
+
+import math
+
+ 
+
+def printnode(start):
+
+    current=start
+
+    if current.link==None:
+
+        return
+
+    print(current.data,end=' ')
+
+    while current.link != start:
+
+        current=current.link
+
+        print(current.data,end=' ')
+
+        print()
+
+ 
+
+def getxy():
+
+    number=random.randint(1,100)
+
+    return number
+
+ 
+
+class Node():
+
+    def __init__(self):
+
+        self.data=None
+
+        self.link=None
+
+        
+
+con=[('A',getxy(),getxy()),('B',getxy(),getxy()),('C',getxy(),getxy()),('D',getxy(),getxy()),('E',getxy(),getxy()),('F',getxy(),getxy()),('G',getxy(),getxy()),('H',getxy(),getxy()),('I',getxy(),getxy()),('J',getxy(),getxy())]
+
+ 
+
+sqrtlist=[]
+
+ 
+
+for x,y,z in con:
+
+    sqrtnum=math.sqrt(y^2+z^2)
+
+    sqrtlist.append((x,sqrtnum))
+
+    
+
+   
+
+sqrtlist.sort(key=lambda x:x[1])
+
+ 
+
+memory=[]
+
+head,current,pre=None,None,None
+
+ 
+
+node=Node()
+
+node.data=sqrtlist[0]
+
+head=node
+
+node.link=head
+
+memory.append(node)
+
+ 
+
+for data in sqrtlist[1:]:
+
+    pre=node
+
+    node=Node()
+
+    node.data=data
+
+    pre.link=node
+
+    node.link=head
+
+    memory.append(node)
+
+    
+
+printnode(head)
+
+    
+
+##3
+
+잘 모르겠습니다..
+
+##4
+
+callque=[None,None,None,None,None,None]
+
+ 
+
+front=rear=0
+
+ 
+
+def isquefull():
+
+    global callque,front,rear
+
+    if ((rear+1)%6 ==front):
+
+        return True
+
+    else:
+
+        return False
+
+    
+
+def isqueempty():
+
+    global callque,front,rear
+
+    if (front==rear):
+
+        return True
+
+    else:
+
+        return False
+
+    
+
+def enque(data):
+
+    global callque,front,rear
+
+    if (isquefull()):
+
+        print("대기열이 꽉 찼습니다.")
+
+        return
+
+    rear=(rear+1)%6
+
+    callque[rear]=data
+
+    
+
+def deque():
+
+    global callque,front,rear
+
+    if (isqueempty()):
+
+        print("대기열이 비었습니다.")
+
+        return None
+
+    front=(front+1)%6
+
+    data=callque[front]
+
+    callque[front]=None
+
+    return data
+
+ 
+
+def peek():
+
+    global callque,front,rear
+
+    if (isqueempty()):
+
+        print("대기열이 비었습니다.")
+
+        return None
+
+    return callque[(front+1)%6]
+
+ 
+
+ 
+
+if __name__== "__main__":
+
+    select=input("사용/9분, 고장/3분, 환불/4분, 기타/1분  ")
+
+    
+
+    i=0
+
+    
+
+    while (False):
+
+        if select == "사용":
+
+            i+=9
+
+            enque(select)
+
+            print("귀하의 대기 예상 시간은",i, "입니다",)
+
+            print("현대 대기 콜 -->", que)
+
+            
+
+        elif select == "고장":
+
+            i+=3
+
+            enque(select)
+
+            print("귀하의 대기 예상 시간은",i, "입니다",)
+
+            print("현대 대기 콜 -->", que)
+
+            
+
+        elif select == "환불":
+
+            i+=4
+
+            enque(select)
+
+            print("귀하의 대기 예상 시간은",i, "입니다",)
+
+            print("현대 대기 콜 -->", que)
+
+            
+
+        elif select == "기타":
+
+            i+=1
+
+            print("귀하의 대기 예상 시간은",i, "입니다",)
+
+            print("현대 대기 콜 -->", que)
+
+        
+
+        else:
+
+            print("wrong input")
+
+
+
+
